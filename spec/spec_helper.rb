@@ -47,7 +47,7 @@ RSpec.configure do |config|
   config.order = "random"
 end
 
-Rspec::Matchers.define :equal_same_time_as do |expected|
+RSpec::Matchers.define :equal_same_time_as do |expected|
   match do |actual|
     expected.to_i == actual.to_i
   end
