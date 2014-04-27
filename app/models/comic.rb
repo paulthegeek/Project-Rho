@@ -5,4 +5,6 @@ class Comic < ActiveRecord::Base
   validates :series_id, presence: true
   validates :publisher_id, presence: true
   validates :release_date, presence: true
+
+  has_and_belongs_to_many :creators
 end

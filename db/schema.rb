@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427000624) do
+ActiveRecord::Schema.define(version: 20140427121715) do
 
   create_table "comics", force: true do |t|
     t.string   "title"
@@ -24,8 +24,20 @@ ActiveRecord::Schema.define(version: 20140427000624) do
     t.datetime "updated_at"
   end
 
+  create_table "comics_creators", id: false, force: true do |t|
+    t.integer "comic_id"
+    t.integer "creator_id"
+  end
+
+  create_table "creators", force: true do |t|
+    t.string "name"
+    t.string "role"
+  end
+
   create_table "publishers", force: true do |t|
     t.string "name"
   end
+
+  add_index "publishers", ["name"], name: "index_publishers_on_name", unique: true
 
 end
