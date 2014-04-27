@@ -3,22 +3,11 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
-# Example:
+# job_type :runner, %Q{export PATH=/Users/X-Wing/.rbenv/shims:/Users/X-Wing/src/.rbenv/bin:/usr/bin:$PATH; eval "$(rbenv init -)"; \
+#                          cd :path && bundle exec rails runner -e development ':task' :output }
 #
-# set :output, "/path/to/my/cron_log.log"
+# set :output, "/Users/X-Wing/Desktop/cron_log.log"
 #
-# every 2.hours do
-#   command "/usr/bin/some_great_command"
-#   runner "MyModel.some_method"
-#   rake "some:great:rake:task"
+# every 50.minutes do
+#   runner 'ComicScraperWorker.perform_async', environment: 'development'
 # end
-#
-# every 4.days do
-#   runner "AnotherModel.prune_old_records"
-# end
-
-# Learn more: http://github.com/javan/whenever
-
-every 1.minute do
-  runner "ComicScraperWorker.perform_async"
-end
