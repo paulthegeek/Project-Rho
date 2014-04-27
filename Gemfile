@@ -10,8 +10,9 @@ gem 'sidekiq', '~> 3.0.0'
 gem 'sinatra', require: false
 gem 'slim'
 gem 'sqlite3'
+gem 'thin'
 gem 'uglifier', '>= 1.3.0'
-gem 'whenever', '~> 0.9.2', require: false
+gem 'whenever', :require => false
 
 group :development, :test do
   gem 'guard-rspec'
@@ -19,13 +20,15 @@ group :development, :test do
   gem 'pry-nav'
   gem 'pry-remote'
   gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i
-  gem 'rspec-rails', '~> 2.14.1'
   gem 'spring'
-  gem 'webmock', '~> 1.17.4'
 end
 
 group :test do
   gem 'nyan-cat-formatter'
+  gem 'webmock', '~> 1.17.4'
+  gem 'rspec-rails', '~> 2.14.1'
+  gem 'shoulda'
+  gem 'terminal-notifier-guard'
 end
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
