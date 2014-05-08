@@ -11,13 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427121715) do
+ActiveRecord::Schema.define(version: 20140428163032) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "comic_series", force: true do |t|
+    t.string  "name"
+    t.integer "sub_id"
+  end
 
   create_table "comics", force: true do |t|
     t.string   "title"
     t.decimal  "price"
     t.integer  "image_id"
-    t.integer  "series_id"
+    t.integer  "comic_series_id"
     t.integer  "publisher_id"
     t.date     "release_date"
     t.datetime "created_at"
@@ -38,6 +46,6 @@ ActiveRecord::Schema.define(version: 20140427121715) do
     t.string "name"
   end
 
-  add_index "publishers", ["name"], name: "index_publishers_on_name", unique: true
+  add_index "publishers", ["name"], name: "index_publishers_on_name", unique: true, using: :btree
 
 end
