@@ -10,5 +10,7 @@ class ComicSeriesWorker
       end
       @comic_series = ComicSeries.find_or_create_by(name: comic_series_name, sub_id: cs[:su_id])
     end
+
+    ComicWorker.create_comics(parsed_response)
   end
 end

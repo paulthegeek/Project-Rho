@@ -7,6 +7,7 @@ class CreatorWorker
       @writer = Creator.find_or_create_by(name: encoded_writer, role: 'writer')
       @artist = Creator.find_or_create_by(name: encoded_artist, role: 'artist')
     end
+    
     ComicSeriesWorker.create_series(parsed_response)
   end
 end
