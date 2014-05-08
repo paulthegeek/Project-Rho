@@ -4,7 +4,10 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'httparty', '~> 0.13.1'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
+gem 'nokogiri'
+gem 'pg', '~> 0.17.1'
 gem 'rails', '4.1.0'
+gem 'therubyracer',  platforms: :ruby
 gem 'sass-rails', '~> 4.0.3'
 gem 'sidekiq', '~> 3.0.0'
 gem 'sinatra', require: false
@@ -30,9 +33,6 @@ group :test do
   gem 'shoulda'
   gem 'terminal-notifier-guard'
 end
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
