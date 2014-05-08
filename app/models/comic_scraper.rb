@@ -1,19 +1,31 @@
+require 'open-uri'
+
 class ComicScraper
 
   def initialize(today, next_wednesday)
-    @today = today
-    @next_wed = next_wednesday
+    @today = '4/23/14'
+    @next_wed = '4/30/14'
   end
 
-  def scrape_release_dates
+  def run_scraper
+    puts 'Running for Wednesday.....'
+    scrape_release_dates(@today)
+    puts 'Running for Next Wednesday......'
+    scrape_release_dates(@next_wednesday)
+  end
+
+  def scrape_release_dates(date)
     uri = 'http://www.midtowncomics.com/store/ajax_wr_online.asp?cat=61&wdate='
     puts 'Sending request.....'
-    response = HTTParty.post(uri + '4/23/2014')
-    parsed_response = eval response
-    parsed_response.each do |comic|
-      @comic = Comic.new({title: comic[:pr_ttle], price: comic[:pr_price]})
-      @comic.save
-    end
+    response = HTTParty.post(uri + date)
+    response.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+    context = V8::Context.new
+    parsed_response = context.eval(response)
+    create_publishers(parsed_response)
+    create_creators(parsed_response)
+    comic_series(parsed_response)
+    create_comics(parsed_response, date)
+    puts 'Done...........'
   end
 end
 
