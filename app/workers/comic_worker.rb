@@ -1,5 +1,10 @@
 class ComicWorker
-  def create_comics(parsed_response, date)
+  include Sidekiq::Worker
+  
+  def self.create_comics(parsed_response, date)
+
+    puts "Creating Comics"
+
     parsed_response.each do |comic|
       @creators = []
       if comic[:writ].present?
@@ -18,15 +23,14 @@ class ComicWorker
       # @comic_series_id = ComicSeries.find_by(sub_id: comic[:su_id]).id
       # @publisher_id = Publisher.find_by(name: comic[:mn_name]).id
 
-      @comic = Comic.new({title: comic[:pr_ttle],
-                          price: comic[:pr_price],
-                          image_id: comic[:pr_id],
-                          comic_series_id: ComicSeries.find_by(sub_id: comic[:su_id]).id,
-                          publisher_id: Publisher.find_by(name: comic[:mn_name]).id,
-                          creator_ids: @creators,
-                          release_date: date })
-
-      @comic.save
+      Comic.where(title: comic[:pr_ttle],
+                  price: comic[:pr_price],
+                  image_id: comic[:pr_id],
+                  comic_series_id: ComicSeries.find_by(sub_id: comic[:su_id]).id,
+                  publisher_id: Publisher.find_by(name: comic[:mn_name]).id,
+                  creator_ids: @creators,
+                  release_date: date ).first_or_create
     end
+    puts "We are finished"
   end
 end

@@ -8,6 +8,6 @@ job_type :runner, %Q{export PATH=/Users/X-Wing/.rbenv/shims:/Users/X-Wing/src/.r
 
 set :output, "/Users/X-Wing/Desktop/cron_log.log"
 
-every 5.minutes do
+every 1.minutes do
   runner 'ComicScraperWorker.perform_async', environment: 'development'
 end

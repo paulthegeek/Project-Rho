@@ -1,9 +1,14 @@
 class PublisherWorker
-  include Sidekiq::Worker
-
   def self.create_publishers(parsed_response)
+    puts 'Creating Publishers...'
     parsed_response.each do |pub|
-      @publisher = Publisher.where(name: pub[:mn_name].to_s).first_or_create
+      begin
+        puts "Publisher: #{pub[:mn_name]}"
+        Publisher.find_or_create_by(name: pub[:mn_name])
+      rescue Exception => e
+        puts e.message
+        puts e.backtrace.inspect
+      end
     end
 
     CreatorWorker.create_creators(parsed_response)
