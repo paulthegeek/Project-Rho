@@ -8,6 +8,7 @@ gem 'pg', '~> 0.17.1'
 gem 'rails', '~> 4.1.0'
 gem 'resque', '~> 1.25.2', require: 'resque/server'
 gem 'therubyracer',  platforms: :ruby
+gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.3'
 gem 'thin', '~> 1.6.2'
 gem 'uglifier', '>= 1.3.0'
