@@ -6,7 +6,7 @@ gem 'jquery-rails', '~> 3.1.0'
 gem 'nokogiri', '~> 1.6.2.1'
 gem 'pg', '~> 0.17.1'
 gem 'rails', '~> 4.1.0'
-gem 'resque', '~> 1.25.2'
+gem 'resque', '~> 1.25.2', require: 'resque/server'
 gem 'therubyracer',  platforms: :ruby
 gem 'sass-rails', '~> 4.0.3'
 gem 'thin', '~> 1.6.2'
