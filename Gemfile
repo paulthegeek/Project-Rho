@@ -18,6 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'whenever', :require => false
 
 group :development, :test do
+  gem 'factory_girl_rails', '~> 4.4.1'
   gem 'guard-rspec'
   gem 'pry'
   gem 'pry-nav'
@@ -28,10 +29,10 @@ end
 
 group :test do
   gem 'nyan-cat-formatter'
-  gem 'webmock', '~> 1.17.4'
   gem 'rspec-rails', '~> 2.14.1'
   gem 'shoulda'
   gem 'terminal-notifier-guard'
+  gem 'webmock', '~> 1.17.4'
 end
 
 # Use ActiveModel has_secure_password
