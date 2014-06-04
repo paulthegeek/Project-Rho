@@ -7,7 +7,6 @@ gem 'jquery-rails'
 gem 'nokogiri'
 gem 'pg', '~> 0.17.1'
 gem 'rails', '4.1.0'
-gem 'therubyracer',  platforms: :ruby
 gem 'sass-rails', '~> 4.0.3'
 gem 'sidekiq', '~> 3.0.0'
 gem 'sinatra', require: false

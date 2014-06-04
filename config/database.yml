@@ -4,6 +4,7 @@ default: &default
   pool: 25
   timeout: 5000
   allow_concurrency: true
+  host: localhost
 
 development:
   <<: *default
