@@ -59,6 +59,9 @@ GEM
       railties (>= 3.0.0)
     ffi (1.9.3)
     formatador (0.2.4)
+    foundation-rails (5.2.3.0)
+      railties (>= 3.1.0)
+      sass (>= 3.2.0)
     guard (2.6.0)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -68,6 +71,8 @@ GEM
     guard-rspec (4.2.8)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
+    haml (4.0.5)
+      tilt
     hike (1.2.3)
     httparty (0.13.1)
       json (~> 1.8)
@@ -223,7 +228,9 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
   factory_girl_rails (~> 4.4.1)
+  foundation-rails (~> 5.2.3.0)
   guard-rspec
+  haml (~> 4.0.5)
   httparty (~> 0.13.1)
   jbuilder (~> 2.0)
   jquery-rails

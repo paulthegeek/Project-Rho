@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'coffee-rails', '~> 4.0.0'
+gem 'foundation-rails', '~> 5.2.3.0'
+gem 'haml', '~> 4.0.5'
 gem 'httparty', '~> 0.13.1'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
