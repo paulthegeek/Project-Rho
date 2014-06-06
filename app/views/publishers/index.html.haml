@@ -1,11 +1,15 @@
 %main
   %div.row
-    %div.large-8.small-centered.columns
-      %table
-        %thead
-          %tr
-            %td Name
-        %tbody
-          - @publishers.each do |pub|
+    %div.large-8.columns.small-centered
+      .row
+        %div
+          = link_to '+Publisher', new_publisher_path, class: 'button small'
+      .row
+        %table
+          %thead
             %tr
-              %td= link_to pub.name, edit_publisher_path(pub)
+              %td Name
+          %tbody
+            - @publishers.each do |pub|
+              %tr
+                %td= link_to pub.name, edit_publisher_path(pub)

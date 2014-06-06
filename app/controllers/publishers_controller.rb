@@ -3,6 +3,10 @@ class PublishersController < ApplicationController
     @publishers = Publisher.all.order('name asc')
   end
 
+  def new
+    @publisher = Publisher.new
+  end
+
   def edit
     @publisher = Publisher.find(params[:id])
   end
@@ -16,6 +20,19 @@ class PublishersController < ApplicationController
       else
         flash[:error] = @publisher.errors
         format.html { render action: :edit }
+      end
+    end
+  end
+
+  def create
+    @publisher = Publisher.new(publisher_params)
+
+    respond_to do |format|
+      if @publisher.save
+        format.html { redirect_to publishers_path, notice: 'Publisher Created' }
+      else
+        flash[:error] = @publisher.errors
+        format.html { render action: :new }
       end
     end
   end

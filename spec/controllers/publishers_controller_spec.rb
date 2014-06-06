@@ -17,6 +17,35 @@ describe PublishersController do
     end
   end
 
+  describe 'GET #new' do
+    it 'assigns a new publisher to @publisher' do
+      get :new
+      expect(assigns(:publisher)).to be_a_new(Publisher)
+    end
+
+    it 'renders the new template' do
+      get :new
+      expect(response).to render_template :new
+    end
+  end
+
+  describe 'POST #create' do
+    context 'with valid parameters' do
+      let(:valid_attributes) { FactoryGirl.attributes_for(:publisher) }
+
+      it 'save new publisher' do
+        expect{
+          post :create, publisher: valid_attributes
+        }.to change(Publisher, :count).by(1)
+      end
+
+      it 'redirects to publisher#index' do
+        post :create, publisher: valid_attributes
+        expect(response).to redirect_to(publishers_path)
+      end
+    end
+  end
+
   describe "GET #edit" do
     it 'finds the requested publisher' do
       get :edit, id: pub
