@@ -5,7 +5,7 @@
         %div
           = link_to '+Publisher', new_publisher_path, class: 'button small'
       .row
-        %table
+        %table#publishers-table
           %thead
             %tr
               %td Name
@@ -13,3 +13,6 @@
             - @publishers.each do |pub|
               %tr
                 %td= link_to pub.name, edit_publisher_path(pub)
+                %td= link_to 'Delete', pub, method: :delete, data: { confirm: 'Are you sure?' }, class: 'index-btn button tiny alert'
+
+                

@@ -1,4 +1,5 @@
 class PublishersController < ApplicationController
+  
   def index
     @publishers = Publisher.all.order('name asc')
   end
@@ -34,6 +35,15 @@ class PublishersController < ApplicationController
         flash[:error] = @publisher.errors
         format.html { render action: :new }
       end
+    end
+  end
+
+  def destroy
+    @publisher = Publisher.find(params[:id])
+    @publisher.destroy
+
+    respond_to do |format|
+      format.html { redirect_to publishers_path }
     end
   end
 
