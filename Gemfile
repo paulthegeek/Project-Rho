@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'capybara', '~> 2.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'foundation-rails', '~> 5.2.3.0'
 gem 'haml', '~> 4.0.5'
