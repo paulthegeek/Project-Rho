@@ -37,17 +37,4 @@ class PublishersController < ApplicationController
       end
     end
   end
-
-  def destroy
-    @publisher = Publisher.find(params[:id])
-    @publisher.destroy
-
-    respond_to do |format|
-      format.html { redirect_to publishers_path }
-    end
-  end
-
-  def publisher_params
-    params.require(:publisher).permit(:name)
-  end
 end

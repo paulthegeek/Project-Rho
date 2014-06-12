@@ -15,9 +15,9 @@ describe 'publisher #index page' do
   it 'creates a new publisher' do
     visit publishers_path
     click_link('+Publisher')
-    fill_in('publisher_name', with: 'BOOM Studios')
+    fill_in('publisher_name', with: 'New Pub')
     click_button('Create')
-    expect(page).to have_content('BOOM Studios')
+    expect(page).to have_content('New Pub')
   end
 
   it 'goes to edit page of publisher' do
@@ -29,8 +29,8 @@ describe 'publisher #index page' do
   it 'updates the publisher' do
     visit publishers_path
     find('#publishers-table').click_link('DC')
-    fill_in('publisher_name', with: 'DC/Vertigo')
+    fill_in('publisher_name', with: 'Update pub')
     click_button('Update')
-    expect(page).to have_content('DC/Vertigo')
+    expect(page).to have_content('Update pub')
   end
 end
