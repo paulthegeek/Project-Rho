@@ -12,6 +12,14 @@ describe 'publisher #index page' do
     find_field('publisher_name')
   end
 
+  it 'creates a new publisher' do
+    visit publishers_path
+    click_link('+Publisher')
+    fill_in('publisher_name', with: 'BOOM Studios')
+    click_button('Create')
+    expect(page).to have_content('BOOM Studios')
+  end
+
   it 'goes to edit page of publisher' do
     visit publishers_path
     find('#publishers-table').click_link('DC')
@@ -23,6 +31,6 @@ describe 'publisher #index page' do
     find('#publishers-table').click_link('DC')
     fill_in('publisher_name', with: 'DC/Vertigo')
     click_button('Update')
-    expect(current_path).to eq(publishers_path)
+    expect(page).to have_content('DC/Vertigo')
   end
 end
