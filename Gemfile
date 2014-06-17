@@ -1,13 +1,15 @@
 source 'https://rubygems.org'
-
+gem 'capybara', '~> 2.3.0'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'foundation-rails', '~> 5.2.3.0'
+gem 'haml', '~> 4.0.5'
 gem 'httparty', '~> 0.13.1'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
+gem 'launchy', '~> 2.4.2'
 gem 'nokogiri'
 gem 'pg', '~> 0.17.1'
 gem 'rails', '4.1.0'
-gem 'therubyracer',  platforms: :ruby
 gem 'sass-rails', '~> 4.0.3'
 gem 'sidekiq', '~> 3.0.0'
 gem 'sinatra', require: false
@@ -18,6 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'whenever', :require => false
 
 group :development, :test do
+  gem 'factory_girl_rails', '~> 4.4.1'
   gem 'guard-rspec'
   gem 'pry'
   gem 'pry-nav'
@@ -28,10 +31,10 @@ end
 
 group :test do
   gem 'nyan-cat-formatter'
-  gem 'webmock', '~> 1.17.4'
   gem 'rspec-rails', '~> 2.14.1'
   gem 'shoulda'
   gem 'terminal-notifier-guard'
+  gem 'webmock', '~> 1.17.4'
 end
 
 # Use ActiveModel has_secure_password
