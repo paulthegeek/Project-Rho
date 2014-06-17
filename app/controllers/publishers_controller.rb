@@ -37,4 +37,8 @@ class PublishersController < ApplicationController
       end
     end
   end
+
+  def publisher_params
+    params.require(:publisher).permit(:name)
+  end
 end

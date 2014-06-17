@@ -40,7 +40,7 @@ describe PublishersController do
       expect(response).to render_template :edit
     end
   end
-
+  
   describe 'POST #create' do
     context 'with valid parameters' do
       let(:valid_attributes) { FactoryGirl.attributes_for(:publisher) }
