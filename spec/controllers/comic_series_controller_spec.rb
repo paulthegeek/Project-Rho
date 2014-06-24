@@ -10,6 +10,13 @@ describe ComicSeriesController do
       expect(assigns(:comic_series)).to match_array([series_1, series_2])
     end
 
+    it 'gets all the comic series with no id' do
+      no_sub_id = FactoryGirl.create(:comic_series, name: 'no_id', sub_id: 0)
+
+      get :index
+      expect(assigns(:cs_no_id)).to match_array([no_sub_id])
+    end
+
     it 'renders index template' do
       get :index
       expect(response).to render_template(:index)

@@ -1,6 +1,7 @@
 class ComicSeriesController < ApplicationController
   def index
     @comic_series = ComicSeries.all
+    @cs_no_id = ComicSeries.has_no_sub_id
   end
 
   def new

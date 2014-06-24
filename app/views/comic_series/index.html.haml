@@ -3,7 +3,19 @@
     %div.large-8.columns.small-centered
       .row
         %div
-          / = link_to '+Comic Series', new_comic_series_path, class: 'button small'
+          = link_to '+Comic Series', new_comic_series_path, class: 'button small'
+      .row
+        %div.large-4.columns
+          .row
+            %table#no_sub_id
+              %thead
+                %tr
+                  %td
+              %tbody
+                -@cs_no_id.each do |cs|
+                  %tr
+                    %td= cs.sub_id
+                    %td= link_to cs.name, edit_comic_series_path(cs)
       .row
         %table#publishers-table
           %thead
