@@ -15,6 +15,11 @@
             %h3
               = link_to root_path do
                 Pull-List
+        %section.top-bar-section
+          %ul.left
+            %li= link_to 'Publishers', publishers_path
+            %li= link_to 'Comic Series', comic_series_index_path
+
 
     = yield
     = javascript_include_tag "application"

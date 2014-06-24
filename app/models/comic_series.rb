@@ -1,4 +1,6 @@
 class ComicSeries < ActiveRecord::Base
+  validates :name, presence: true
+
   def comic_series(parsed_response)
     parsed_response.each do |cs|
       doc = Nokogiri::HTML(open("http://www.midtowncomics.com/store/pop_subscrip.asp?SubID=#{cs[:su_id]}"))
