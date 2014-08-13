@@ -232,7 +232,7 @@ DEPENDENCIES
   pry-remote
   rails (= 4.1.0)
   rb-fsevent
-  rspec-rails (~> 2.14.1)
+  rspec-rails (~> 2.14.0)
   shoulda
   sidekiq (~> 3.0.0)
   sinatra
