@@ -27,7 +27,7 @@ end
 
 group :test do
   gem 'nyan-cat-formatter'
-  gem 'rspec-rails', '~> 2.14.0'
+  gem 'rspec-rails', '~> 3.0.2'
   gem 'shoulda'
   gem 'terminal-notifier-guard'
   gem 'webmock', '~> 1.17.4'
