@@ -10,7 +10,7 @@ describe 'Publishers API', type: :request do
       it 'responds with 200' do
         get '/publishers'
         expect(response.content_type).to eq Mime::JSON
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -33,7 +33,7 @@ describe 'Publishers API', type: :request do
       it 'returns publisher by id' do
         get "/publishers/#{pub.id}"
         expect(response.content_type).to eq Mime::JSON
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -71,6 +71,43 @@ describe 'Publishers API', type: :request do
         post 'publishers', :publisher => {name: nil}
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
+  context 'valid publisher attributes' do
+    describe 'PATCH /publishers/:id' do
+      let!(:update_pub) { FactoryGirl.create :publisher, name: 'Pubs' }
+      it 'creates a publisher' do
+        patch "/publishers/#{update_pub.id}", :publisher => {name: 'Pubs Edit'}
+        expect(response.content_type).to eq Mime::JSON
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'responses with location' do
+        patch "/publishers/#{update_pub.id}", :publisher => {name: 'Pubs Edit Location'}
+        expect(response.location).not_to eq nil
+      end
+    end
+  end
+  context 'invalid publisher attributes' do
+    describe 'PATCH /publishers/:id' do
+      let!(:update_pub) { FactoryGirl.create :publisher, name: 'Pubs' }
+      it 'does not update a publisher' do
+        patch "/publishers/#{update_pub.id}", :publisher => {name: nil}
+        expect(response.content_type).to eq Mime::JSON
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
+  context 'publisher is found' do
+    describe 'DELETE /publishers/:id' do
+      let!(:archive_pub) { FactoryGirl.create :publisher, name: 'arc_pub', archived: false }
+
+      it 'archives the publisher' do
+        delete "/publishers/#{archive_pub.id}"
+        expect(response).to have_http_status(:no_content)
       end
     end
   end

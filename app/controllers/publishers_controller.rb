@@ -22,9 +22,9 @@ class PublishersController < ApplicationController
 
     respond_to do |format|
       if @publisher.update_attributes(publisher_params)
-        format.json { render json: @publisher }
+        format.json { render json: @publisher, status: :ok, location: @publisher }
       else
-        format.json { render json: @publisher.errors }
+        format.json { render json: @publisher.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -39,6 +39,12 @@ class PublishersController < ApplicationController
         format.json { render json: @publisher.errors, status: :unprocessable_entity}
       end
     end
+  end
+
+  def destroy
+    @publisher = Publisher.find_unarchived(params[:id])
+    @publisher.archive
+    head status: :no_content
   end
 
   def publisher_params

@@ -17,6 +17,18 @@ describe PublishersController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    it 'assigns the requested publisher to @publisher' do
+      get :show, id: pub, format: 'json'
+      expect(assigns(:publisher)).to eq pub
+    end
+
+    it 'renders show template' do
+      get :show, id: FactoryGirl.create(:publisher), format: 'json'
+      expect(response).to render_template(:show)
+    end
+  end
+
   describe 'POST #create' do
     context 'with valid parameters' do
       let(:valid_attributes) { FactoryGirl.attributes_for(:publisher) }
@@ -39,7 +51,7 @@ describe PublishersController, type: :controller do
     end
   end
 
-  describe "PATCH #update" do
+  describe 'PATCH #update' do
     context 'with valid attributes' do
       fit 'finds the requested publisher' do
         patch :update, id: pub, publisher: FactoryGirl.attributes_for(:publisher), format: :json
@@ -63,6 +75,15 @@ describe PublishersController, type: :controller do
         pub.reload
         expect(pub.name).to_not eq nil
       end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    let!(:arc_pub) { FactoryGirl.create(:publisher, name: 'Archive me', archived: false) }
+
+    it 'archives publisher' do
+      delete :destroy, id: arc_pub
+      expect(pub.archive).to eq true
     end
   end
 end
