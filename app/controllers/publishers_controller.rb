@@ -1,7 +1,12 @@
 class PublishersController < ApplicationController
-  
+  respond_to :json
+
   def index
-    @publishers = Publisher.all.order('name asc')
+    @publishers = Publisher.all.order('id asc')
+  end
+
+  def show
+    @publisher = Publisher.find(params[:id])
   end
 
   def new
@@ -17,10 +22,9 @@ class PublishersController < ApplicationController
 
     respond_to do |format|
       if @publisher.update_attributes(publisher_params)
-        format.html { redirect_to publishers_path, notice: 'Publisher Updated' }
+        format.json { render json: @publisher, status: :ok, location: @publisher }
       else
-        flash[:error] = @publisher.errors
-        format.html { render action: :edit }
+        format.json { render json: @publisher.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -30,12 +34,17 @@ class PublishersController < ApplicationController
 
     respond_to do |format|
       if @publisher.save
-        format.html { redirect_to publishers_path, notice: 'Publisher Created' }
+        format.json { render json: @publisher, status: :created, location: @publisher }
       else
-        flash[:error] = @publisher.errors
-        format.html { render action: :new }
+        format.json { render json: @publisher.errors, status: :unprocessable_entity}
       end
     end
+  end
+
+  def destroy
+    @publisher = Publisher.find_unarchived(params[:id])
+    @publisher.archive
+    head status: :no_content
   end
 
   def publisher_params

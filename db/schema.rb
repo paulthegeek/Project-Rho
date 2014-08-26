@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603021031) do
+ActiveRecord::Schema.define(version: 20140824184032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,8 @@ ActiveRecord::Schema.define(version: 20140603021031) do
   end
 
   create_table "publishers", force: true do |t|
-    t.string "name"
+    t.string  "name"
+    t.boolean "archived", default: false
   end
 
   add_index "publishers", ["name"], name: "index_publishers_on_name", unique: true, using: :btree

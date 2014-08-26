@@ -1,6 +1,7 @@
 require 'sidekiq/web'
+require 'api_constraints'
 
 Rails.application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
-  # You can have the root of your site routed with "root"
+  resources :publishers, defaults: { format: 'json' }
 end
