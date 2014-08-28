@@ -12,9 +12,9 @@ class CreatorsController < ApplicationController
 
     respond_to do |format|
       if @creator.save
-        format.json { render json: @creator }
+        format.json { render json: @creator, status: :created, location: @creator }
       else
-        format.json { render json: @creator.errors }
+        format.json { render json: @creator.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -24,9 +24,9 @@ class CreatorsController < ApplicationController
 
     respond_to do |format|
       if @creator.update_attributes(creator_params)
-        format.json { render json: @creator }
+        format.json { render json: @creator, location: @creator }
       else
-        format.json { render json: @creator.errors }
+        format.json { render json: @creator.errors, status: :unprocessable_entity }
       end
     end
   end
