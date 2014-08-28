@@ -53,7 +53,7 @@ describe PublishersController, type: :controller do
 
   describe 'PATCH #update' do
     context 'with valid attributes' do
-      fit 'finds the requested publisher' do
+      it 'finds the requested publisher' do
         patch :update, id: pub, publisher: FactoryGirl.attributes_for(:publisher), format: :json
         expect(assigns(:publisher)).to eq pub
       end
