@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 
 describe 'Publishers API', type: :request do
   let!(:pub) { FactoryGirl.create :publisher }
