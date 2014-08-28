@@ -83,7 +83,7 @@ describe PublishersController, type: :controller do
 
     it 'archives publisher' do
       delete :destroy, id: arc_pub
-      expect(pub.archive).to eq true
+      expect(arc_pub.archive).to eq true
     end
   end
 end

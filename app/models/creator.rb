@@ -13,4 +13,13 @@ class Creator < ActiveRecord::Base
       @artist = Creator.find_or_create_by(name: encoded_artist, role: 'artist')
     end
   end
+
+  def self.find_unarchived(id)
+    find_by!(id: id, archived: false)
+  end
+
+  def archive
+    self.archived = true
+    self.save
+  end
 end
