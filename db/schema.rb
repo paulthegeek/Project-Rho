@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826040418) do
+ActiveRecord::Schema.define(version: 20140829024816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140826040418) do
   create_table "comic_series", force: true do |t|
     t.string  "name"
     t.integer "sub_id"
+    t.boolean "archived", default: false
   end
 
   create_table "comics", force: true do |t|
