@@ -4,6 +4,7 @@ class ComicSeries < ActiveRecord::Base
   def self.has_no_sub_id
     @cs_no_id = ComicSeries.where('sub_id = 0')
   end
+
   def comic_series(parsed_response)
     parsed_response.each do |cs|
       doc = Nokogiri::HTML(open("http://www.midtowncomics.com/store/pop_subscrip.asp?SubID=#{cs[:su_id]}"))
@@ -15,5 +16,14 @@ class ComicSeries < ActiveRecord::Base
       end
       @comic_series = ComicSeries.find_or_create_by(name: comic_series_name, sub_id: cs[:su_id])
     end
+  end
+
+  def self.find_unarchived(id)
+    find_by!(id: id, archived: false)
+  end
+
+  def archive
+    self.archived = true
+    self.save
   end
 end
