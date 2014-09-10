@@ -1,11 +1,14 @@
 class ComicSeriesController < ApplicationController
   def index
-    @comic_series = ComicSeries.all
-    @cs_no_id = ComicSeries.has_no_sub_id
+    if params[:no_sub_id]
+      @comic_series = ComicSeries.has_no_sub_id
+    else
+      @comic_series = ComicSeries.all.order('id asc')
+    end
   end
 
-  def new
-    @single_comic_series = ComicSeries.new
+  def show
+    @single_comic_series = ComicSeries.find(params[:id])
   end
 
   def create
@@ -13,38 +16,29 @@ class ComicSeriesController < ApplicationController
 
     respond_to do |format|
       if @single_comic_series.save
-        format.html { redirect_to comic_series_index_path, notice: 'Comic Series Created' }
+        format.json { render json: @single_comic_series, status: :created, location: @single_comic_series }
       else
-        flash[:error] = @single_comic_series.errors
-        format.html { render action: :new }
+        format.json { render json: @single_comic_series.errors, status: :unprocessable_entity }
       end
-    end 
-  end
-
-  def edit
-    @single_comic_series = ComicSeries.find(params[:id])
+    end
   end
 
   def update
-    @comic_series = ComicSeries.find(params[:id])
+    @single_comic_series = ComicSeries.find(params[:id])
 
     respond_to do |format|
-      if @comic_series.update_attributes(comic_series_params)
-        format.html { redirect_to comic_series_index_path, notice: 'comic_series Updated' }
+      if @single_comic_series.update_attributes(comic_series_params)
+        format.json { render json: @single_comic_series, location: @single_comic_series }
       else
-        flash[:error] = @comic_series.errors
-        format.html { render action: :edit }
+        format.json { render json: @single_comic_series.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    @comic_series = ComicSeries.find(params[:id])
-    @comic_series.destroy
-
-    respond_to do |format|
-      format.html { redirect_to comic_series_index_path}
-    end
+    @single_comic_series = ComicSeries.find_unarchived(params[:id])
+    @single_comic_series.archive
+    head status: :no_content
   end
 
   def comic_series_params
