@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Creators API', type: :request do
-  let!(:creator)   { FactoryGirl.create :creator }
+  let!(:creator) { FactoryGirl.create :creator }
 
   context 'index resources are found' do
     describe 'GET creators' do

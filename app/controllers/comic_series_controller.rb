@@ -1,7 +1,10 @@
 class ComicSeriesController < ApplicationController
   def index
-    @comic_series = ComicSeries.all.order('id asc')
-    @cs_no_id = ComicSeries.has_no_sub_id
+    if params[:no_sub_id]
+      @comic_series = ComicSeries.has_no_sub_id
+    else
+      @comic_series = ComicSeries.all.order('id asc')
+    end
   end
 
   def show
@@ -13,9 +16,9 @@ class ComicSeriesController < ApplicationController
 
     respond_to do |format|
       if @single_comic_series.save
-        format.json { render json: @single_comic_series }
+        format.json { render json: @single_comic_series, status: :created, location: @single_comic_series }
       else
-        format.json { render json: @single_comic_series.errors }
+        format.json { render json: @single_comic_series.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -25,20 +28,17 @@ class ComicSeriesController < ApplicationController
 
     respond_to do |format|
       if @single_comic_series.update_attributes(comic_series_params)
-        format.json { render json: @single_comic_series }
+        format.json { render json: @single_comic_series, location: @single_comic_series }
       else
-        format.json { render json: @single_comic_series.errors }
+        format.json { render json: @single_comic_series.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    @comic_series = ComicSeries.find(params[:id])
-    @comic_series.destroy
-
-    respond_to do |format|
-      format.html { redirect_to comic_series_index_path}
-    end
+    @single_comic_series = ComicSeries.find_unarchived(params[:id])
+    @single_comic_series.archive
+    head status: :no_content
   end
 
   def comic_series_params

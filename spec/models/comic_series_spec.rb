@@ -7,8 +7,8 @@ describe ComicSeries do
 
   context 'has no subscription id' do
     describe '#has_no_sub_id' do
-      let(:series_with_id)    { FactoryGirl.create(:comic_series, name: 'with_id', sub_id: 123) }
-      let(:series_without_id) { FactoryGirl.create(:comic_series, name: 'no_id', sub_id: 0) }
+      let(:series_with_id)    { FactoryGirl.create(:comic_series) }
+      let(:series_without_id) { FactoryGirl.create(:no_sub_id_comic_series) }
       it "returns series' where sub_id is 0/nil" do
         expect(ComicSeries.has_no_sub_id).to match_array([series_without_id])
       end

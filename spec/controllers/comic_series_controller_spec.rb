@@ -11,16 +11,20 @@ describe ComicSeriesController, type: :controller do
       expect(assigns(:comic_series)).to match_array([series_1, series_2])
     end
 
-    it 'gets all comic series with no id' do
-      no_sub_id = FactoryGirl.create(:comic_series, name: 'no_id', sub_id: 0)
-
-      get :index, { format: :json }
-      expect(assigns(:cs_no_id)).to match_array([no_sub_id])
-    end
-
     it 'renders index template' do
       get :index, { format: :json }
       expect(response).to render_template(:index)
+    end
+  end
+
+  context 'with no sub id' do
+    describe 'GET #index' do
+      let(:no_sub_id) { FactoryGirl.create :no_sub_id_comic_series }
+
+      it 'gets all comic series with sub id of 0' do
+        get :index, { no_sub_id: true, format: :json }
+        expect(assigns(:comic_series)).to match_array([no_sub_id])
+      end
     end
   end
 

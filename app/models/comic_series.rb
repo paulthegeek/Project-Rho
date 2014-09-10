@@ -1,8 +1,8 @@
 class ComicSeries < ActiveRecord::Base
   validates :name, presence: true
-
+  
   def self.has_no_sub_id
-    @cs_no_id = ComicSeries.where('sub_id = 0')
+    ComicSeries.where('sub_id = 0' || sub_id.nil?)
   end
 
   def comic_series(parsed_response)
