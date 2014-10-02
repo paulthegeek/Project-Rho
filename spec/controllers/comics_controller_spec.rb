@@ -21,7 +21,7 @@ describe ComicsController, type: :controller do
 
       it 'gets all comics that are variants' do
         get :index, { variant: true, format: :json }
-        expect(assigns(:comics_with_variant)).to match_array([variant])
+        expect(assigns(:comics)).to match_array([variant])
       end
     end
 
@@ -31,7 +31,7 @@ describe ComicsController, type: :controller do
 
       it 'gets all the comics that are reprints' do
         get :index, { reprint: true, format: :json }
-        expect(assigns(:comics_with_reprint)).to match_array([reprint])
+        expect(assigns(:comics)).to match_array([reprint])
       end
     end
   end

@@ -1,9 +1,9 @@
 class ComicsController < ApplicationController
   def index
     if params[:variant]
-      @comics_with_variant = Comic.variant.order('id asc')
+      @comics = Comic.variant.order('id asc')
     elsif params[:reprint]
-      @comics_with_reprint = Comic.reprint.order('id asc')
+      @comics = Comic.reprint.order('id asc')
     else
       @comics = Comic.all.order('id asc')
     end
@@ -18,9 +18,9 @@ class ComicsController < ApplicationController
 
     respond_to do |format|
       if @comic.save
-        format.json { render json: @comic }
+        format.json { render json: @comic, status: :created, location: @comic }
       else
-        format.json { render json: @comic.errors }
+        format.json { render json: @comic.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -30,7 +30,7 @@ class ComicsController < ApplicationController
 
     respond_to do |format|
       if @comic.update_attributes(comic_params)
-        format.json { render json: @comic }
+        format.json { render json: @comic, location: @comic }
       else
         format.json { render json: @comic.errors, status: :unprocessable_entity }
       end

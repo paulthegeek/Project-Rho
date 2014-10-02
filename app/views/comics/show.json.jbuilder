@@ -1,1 +1,1 @@
-?6VtkR`8Mb1vU~ql3,+x
+json.comics @comic, :id, :title, :price, :image_id, :comic_series_id, :publisher_id, :release_date, :variant, :reprint, :archived
