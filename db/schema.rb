@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140829024816) do
+ActiveRecord::Schema.define(version: 20141002054648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20140829024816) do
     t.datetime "updated_at"
     t.boolean  "variant"
     t.boolean  "reprint"
+    t.boolean  "archived",        default: false
   end
 
   create_table "comics_creators", id: false, force: true do |t|

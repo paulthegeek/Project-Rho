@@ -8,4 +8,17 @@ class Comic < ActiveRecord::Base
 
   belongs_to :comic_series
   has_and_belongs_to_many :creators
+
+  def archive
+    self.archived = true
+    self.save
+  end
+
+  def self.reprint
+    self.where(reprint: true)
+  end
+  
+  def self.variant
+    self.where(variant: true)
+  end
 end

@@ -3,7 +3,8 @@ require 'api_constraints'
 
 Rails.application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
+  resources :comics, defaults: { format: :json }
   resources :comic_series, defaults: { format: :json }
-  resources :creators, defaults: { format: 'json' }
-  resources :publishers, defaults: { format: 'json' }
+  resources :creators, defaults: { format: :json }
+  resources :publishers, defaults: { format: :json }
 end
