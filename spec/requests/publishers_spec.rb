@@ -17,11 +17,11 @@ describe 'Publishers API', type: :request do
       let(:pub_keys) { json['publishers'].first }
 
       it 'contains id key' do
-        get '/publishers', {format: 'json'}
+        get '/publishers', format: :json
         expect(pub_keys).to have_key('id')
       end
       it 'contains name key' do
-        get '/publishers', {format: 'json'}
+        get '/publishers', format: :json
         expect(pub_keys).to have_key('name')
       end
     end
@@ -30,7 +30,7 @@ describe 'Publishers API', type: :request do
   context 'show resources are found' do
     describe 'GET /publishers/:id' do
       it 'returns publisher by id' do
-        get "/publishers/#{pub.id}"
+        get "/publishers/#{pub.id}", format: :json
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:ok)
       end
@@ -40,11 +40,11 @@ describe 'Publishers API', type: :request do
       let(:pub_keys) { json['publishers'] }
 
       it 'contains id key' do
-        get "/publishers/#{pub.id}"
+        get "/publishers/#{pub.id}", format: :json
         expect(pub_keys).to have_key('id')
       end
       it 'contains name key' do
-        get "/publishers/#{pub.id}"
+        get "/publishers/#{pub.id}", format: :json
         expect(pub_keys).to have_key('name')
       end
     end
@@ -53,13 +53,13 @@ describe 'Publishers API', type: :request do
   context 'valid publisher attributes' do
     describe 'POST /publishers' do
       it 'creates a publisher' do
-        post '/publishers', :publisher => {name: 'Image'}
+        post '/publishers', publisher: { name: 'Image' }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:created)
       end
 
       it 'responses with location' do
-        post '/publishers', :publisher => {name: 'DC'}
+        post '/publishers', publisher: { name: 'DC' }
         expect(response.location).not_to eq nil
       end
     end
@@ -67,7 +67,7 @@ describe 'Publishers API', type: :request do
   context 'invalid publisher attributes' do
     describe 'POST /publishers' do
       it 'does not create a publisher' do
-        post 'publishers', :publisher => {name: nil}
+        post 'publishers', publisher: { name: nil }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -77,14 +77,15 @@ describe 'Publishers API', type: :request do
   context 'valid publisher attributes' do
     describe 'PATCH /publishers/:id' do
       let!(:update_pub) { FactoryGirl.create :publisher, name: 'Pubs' }
+      
       it 'creates a publisher' do
-        patch "/publishers/#{update_pub.id}", :publisher => {name: 'Pubs Edit'}
+        patch "/publishers/#{update_pub.id}", publisher: { name: 'Pubs Edit' }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:ok)
       end
 
       it 'responses with location' do
-        patch "/publishers/#{update_pub.id}", :publisher => {name: 'Pubs Edit Location'}
+        patch "/publishers/#{update_pub.id}", publisher: { name: 'Pubs Edit Location' }
         expect(response.location).not_to eq nil
       end
     end
@@ -92,8 +93,9 @@ describe 'Publishers API', type: :request do
   context 'invalid publisher attributes' do
     describe 'PATCH /publishers/:id' do
       let!(:update_pub) { FactoryGirl.create :publisher, name: 'Pubs' }
+
       it 'does not update a publisher' do
-        patch "/publishers/#{update_pub.id}", :publisher => {name: nil}
+        patch "/publishers/#{update_pub.id}", publisher: { name: nil }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:unprocessable_entity)
       end

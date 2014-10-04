@@ -91,7 +91,7 @@ describe 'Comics API', type: :request do
   context 'show resources are found' do
     describe 'GET comic/:id' do
       it 'returns comic by id' do
-        get "/comics/#{comic.id}", { format: :json }
+        get "/comics/#{comic.id}", format: :json
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:ok)
       end
@@ -101,7 +101,7 @@ describe 'Comics API', type: :request do
       let(:comic_keys) { json['comics'] }
 
       it 'contains comic attributes' do
-        get "/comics/#{comic.id}", { format: :json }
+        get "/comics/#{comic.id}", format: :json
         expect(comic_keys).to have_key('id')
         expect(comic_keys).to have_key('title')
         expect(comic_keys).to have_key('price')
@@ -119,8 +119,8 @@ describe 'Comics API', type: :request do
   context 'valid comic attributes' do
     describe 'POST comic' do
       it 'creates a comic' do
-        post '/comics', comic: {title: 'created_comic', price: 4.99, image_id: 51, 
-                                comic_series_id: 54, publisher_id: 1, release_date: DateTime.now}
+        post '/comics', comic: { title: 'created_comic', price: 4.99, image_id: 51, 
+                                comic_series_id: 54, publisher_id: 1, release_date: DateTime.now }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:created)
         expect(response.location).not_to eq nil
@@ -131,37 +131,37 @@ describe 'Comics API', type: :request do
   context 'invalid comic attributes' do
     describe 'POST comic' do
       it 'does not create a comic with an empty title' do
-        post '/comics', comic: {title: nil}
+        post '/comics', comic: { title: nil }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it 'does not create a comic with an empty sub_id' do
-        post '/comics', comic: {price: nil}
+        post '/comics', comic: { price: nil }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it 'does not create a comic with an empty archive' do
-        post '/comics', comic: {image_id: nil}
+        post '/comics', comic: { image_id: nil }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it 'does not create a comic with an empty archive' do
-        post '/comics', comic: {comic_series_id: nil}
+        post '/comics', comic: { comic_series_id: nil }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it 'does not create a comic with an empty archive' do
-        post '/comics', comic: {publisher_id: nil}
+        post '/comics', comic: { publisher_id: nil }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it 'does not create a comic with an empty archive' do
-        post '/comics', comic: {release_date: nil}
+        post '/comics', comic: { release_date: nil }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -173,7 +173,7 @@ describe 'Comics API', type: :request do
       let!(:update_comic) { FactoryGirl.create :comic, title: 'Update Comic', price: 4.99, image_id: 1, 
                                                        comic_series_id: 1, publisher_id: 1, release_date: DateTime.now }
       it 'updates comic' do
-        patch "/comics/#{update_comic.id}", comic: {title: 'Updated Comic Series', price: 3.99}
+        patch "/comics/#{update_comic.id}", comic: { title: 'Updated Comic Series', price: 3.99 }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:ok)
         expect(response.location).not_to eq nil
@@ -187,7 +187,7 @@ describe 'Comics API', type: :request do
                                                        comic_series_id: 1, publisher_id: 1, release_date: DateTime.now }
 
       it 'does not update a comic series with an empty name' do
-        patch "/comics/#{update_comic.id}", comic: {title: nil}
+        patch "/comics/#{update_comic.id}", comic: { title: nil }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:unprocessable_entity)
       end

@@ -16,17 +16,17 @@ describe 'Creators API', type: :request do
       let(:creator_keys) { json['creators'].first }
 
       it 'contains id key' do
-        get '/creators', {format: 'json'}
+        get '/creators', format: :json
         expect(creator_keys).to have_key('id')
       end
 
       it 'contains name key' do
-        get '/creators', {format: 'json'}
+        get '/creators', format: :json
         expect(creator_keys).to have_key('name')
       end
 
       it 'contains role key' do
-        get '/creators', { format: :json }
+        get '/creators', format: :json
         expect(creator_keys).to have_key('role')
       end
     end
@@ -64,7 +64,7 @@ describe 'Creators API', type: :request do
   context 'valid creator attributes' do
     describe 'POST creators' do
       it 'creates a creator' do
-        post '/creators', creator: {name: 'created_creator', role: 'writer'}
+        post '/creators', creator: { name: 'created_creator', role: 'writer' }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:created)
         expect(response.location).not_to eq nil
@@ -75,13 +75,13 @@ describe 'Creators API', type: :request do
   context 'invalid creator attributes' do
     describe 'POST creators' do
       it 'does not create a creator with empty name' do
-        post '/creators', :creator => {name: nil}
+        post '/creators', creator: { name: nil }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it 'does not create a creator with empty role' do
-        post '/creators', :creator => {role: nil}
+        post '/creators', creator: { role: nil }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -93,7 +93,7 @@ describe 'Creators API', type: :request do
       let!(:update_creator) { FactoryGirl.create :creator, name: 'Update Creator', role: 'writer' }
 
       it 'creates a creator' do
-        patch "/creators/#{update_creator.id}", :creator => {name: 'Creator Updated', role: 'artist'}
+        patch "/creators/#{update_creator.id}", creator: { name: 'Creator Updated', role: 'artist' }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:ok)
         expect(response.location).not_to eq nil
@@ -106,13 +106,13 @@ describe 'Creators API', type: :request do
       let!(:update_creator) { FactoryGirl.create :creator, name: 'Update Creator' }
 
       it 'does not update a creator with empty name' do
-        patch "creators/#{update_creator.id}", :creator => {name: nil}
+        patch "creators/#{update_creator.id}", creator:{ name: nil }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it 'does not update a creator with empty role' do
-        patch "creators/#{update_creator.id}", :creator => {role: nil}
+        patch "creators/#{update_creator.id}", creator: { role: nil }
         expect(response.content_type).to eq Mime::JSON
         expect(response).to have_http_status(:unprocessable_entity)
       end

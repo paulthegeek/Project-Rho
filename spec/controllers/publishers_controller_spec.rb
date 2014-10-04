@@ -7,12 +7,12 @@ describe PublishersController, type: :controller do
     it 'gets all the publishers' do
       pub_2 = FactoryGirl.create(:publisher, name: 'Pub_2')
 
-      get :index, {format: 'json'}
+      get :index, format: 'json'
       expect(assigns(:publishers)).to match_array([pub, pub_2])
     end
 
     it 'renders index template' do
-      get :index, {format: 'json'}
+      get :index, format: 'json'
       expect(response).to render_template(:index)
     end
   end

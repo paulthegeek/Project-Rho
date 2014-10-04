@@ -7,12 +7,12 @@ describe ComicSeriesController, type: :controller do
     it 'gets all comic series' do
       series_2 = FactoryGirl.create(:comic_series, name: 'S2', sub_id: 543)
 
-      get :index, { format: :json }
+      get :index, format: :json
       expect(assigns(:comic_series)).to match_array([series_1, series_2])
     end
 
     it 'renders index template' do
-      get :index, { format: :json }
+      get :index, format: :json
       expect(response).to render_template(:index)
     end
   end

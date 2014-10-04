@@ -6,12 +6,12 @@ describe CreatorsController, type: :controller do
     let(:cre_2) { FactoryGirl.create :creator, name: 'Jessica', role: 'writer' }
 
     it 'response with all creators' do
-      get :index, format: 'json'
+      get :index, format: :json
       expect(assigns(:creators)).to match_array([cre_1, cre_2])
     end
 
     it 'renders index template' do
-      get :index, {format: 'json'}
+      get :index, {format: :json}
       expect(response).to render_template(:index)
     end
   end
@@ -19,12 +19,12 @@ describe CreatorsController, type: :controller do
   describe 'GET #show' do
     let(:cre_1) { FactoryGirl.create :creator }
     it 'assigns the requested creator to @creator' do
-      get :show, id: cre_1, format: 'json'
+      get :show, id: cre_1, format: :json
       expect(assigns(:creator)).to eq cre_1
     end
 
     it 'renders show template' do
-      get :show, id: FactoryGirl.create(:creator), format: 'json'
+      get :show, id: FactoryGirl.create(:creator), format: :json
       expect(response).to render_template(:show)
     end
   end
