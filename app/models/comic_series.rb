@@ -17,11 +17,7 @@ class ComicSeries < ActiveRecord::Base
       @comic_series = ComicSeries.find_or_create_by(name: comic_series_name, sub_id: cs[:su_id])
     end
   end
-
-  def self.find_unarchived(id)
-    find_by!(id: id, archived: false)
-  end
-
+  
   def archive
     self.archived = true
     self.save

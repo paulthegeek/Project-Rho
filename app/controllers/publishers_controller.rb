@@ -42,7 +42,7 @@ class PublishersController < ApplicationController
   end
 
   def destroy
-    @publisher = Publisher.find_unarchived(params[:id])
+    @publisher = Publisher.find(params[:id])
     @publisher.archive
     head status: :no_content
   end

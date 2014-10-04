@@ -36,7 +36,7 @@ class ComicSeriesController < ApplicationController
   end
 
   def destroy
-    @single_comic_series = ComicSeries.find_unarchived(params[:id])
+    @single_comic_series = ComicSeries.find(params[:id])
     @single_comic_series.archive
     head status: :no_content
   end

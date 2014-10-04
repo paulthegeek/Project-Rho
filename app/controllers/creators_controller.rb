@@ -32,7 +32,7 @@ class CreatorsController < ApplicationController
   end
 
   def destroy
-    @creator = Creator.find_unarchived(params[:id])
+    @creator = Creator.find(params[:id])
     @creator.archive
     head status: :no_content
   end
