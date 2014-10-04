@@ -27,8 +27,8 @@ FactoryGirl.define do
       comic_series_id 1
       publisher_id 1 
       release_date DateTime.new(2014,8,12)
-      variant true
-      reprint false
+      variant 'true'
+      reprint 'false'
     end
 
     factory :comic_reprint do

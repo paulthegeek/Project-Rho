@@ -16,21 +16,21 @@ describe ComicsController, type: :controller do
     end
 
     context 'being a variant comic' do
-      let(:variant)     { FactoryGirl.create :comic_variant }
-      let(:non_variant) { FactoryGirl.create :comic}
+      let!(:variant)     { FactoryGirl.create :comic_variant }
+      let!(:non_variant) { FactoryGirl.create :comic}
 
       it 'gets all comics that are variants' do
-        get :index, { variant: true, format: :json }
+        get :index, { variant: 'true', format: :json }
         expect(assigns(:comics)).to match_array([variant])
       end
     end
 
     context 'being a reprint comic' do
-      let(:reprint)     { FactoryGirl.create :comic_reprint }
-      let(:non_reprint) { FactoryGirl.create :comic }
+      let!(:reprint)     { FactoryGirl.create :comic_reprint }
+      let!(:non_reprint) { FactoryGirl.create :comic }
 
       it 'gets all the comics that are reprints' do
-        get :index, { reprint: true, format: :json }
+        get :index, { reprint: 'true', format: :json }
         expect(assigns(:comics)).to match_array([reprint])
       end
     end

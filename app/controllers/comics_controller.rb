@@ -1,8 +1,8 @@
 class ComicsController < ApplicationController
   def index
-    if params[:variant]
+    if params[:variant] == 'true'
       @comics = Comic.variant.order('id asc')
-    elsif params[:reprint]
+    elsif params[:reprint] == 'true'
       @comics = Comic.reprint.order('id asc')
     else
       @comics = Comic.all.order('id asc')
