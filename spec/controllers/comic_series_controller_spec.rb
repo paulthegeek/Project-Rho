@@ -22,7 +22,7 @@ describe ComicSeriesController, type: :controller do
       let(:no_sub_id) { FactoryGirl.create :no_sub_id_comic_series }
 
       it 'gets all comic series with sub id of 0' do
-        get :index, { no_sub_id: true, format: :json }
+        get :index, { no_sub_id: 'true', format: :json }
         expect(assigns(:comic_series)).to match_array([no_sub_id])
       end
     end

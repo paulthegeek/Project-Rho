@@ -1,6 +1,6 @@
 class ComicSeriesController < ApplicationController
   def index
-    if params[:no_sub_id]
+    if params[:no_sub_id] == 'true'
       @comic_series = ComicSeries.has_no_sub_id
     else
       @comic_series = ComicSeries.all.order('id asc')
