@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+gem 'capistrano', '~> 3.2.1'
+gem 'capistrano-rails', '~> 1.1.1'
 gem 'capybara', '~> 2.3.0'
 gem 'haml', '~> 4.0.5'
 gem 'httparty', '~> 0.13.1'
@@ -13,6 +15,7 @@ gem 'slim'
 gem 'sqlite3'
 gem 'thin'
 gem 'uglifier', '>= 1.3.0'
+gem 'unicorn'
 gem 'whenever', :require => false
 
 group :development, :test do
@@ -36,11 +39,8 @@ end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
