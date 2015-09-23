@@ -21,16 +21,14 @@ easy way to get data to build websites or applications around. The industry also
 tends to enjoy monopolies around this data. To get around the problem I decided
 to build a scraper that would fill a database of all the new comics every Wednesday.
 There are a few issues that I ran into while building the scraper. The data that
-is returned looks something like a json object, but it's not valid for many reasons.
+is returned looks something like a json object, but it's not valid. The two main reasons are:
+ 1. The data that is returned has extra commas, brackets, and square brackets in the wrong places
+ 2. Data inconsistencies
 
 # Solution
 To get around the problem I decided to build a scraper that would fill a database
-of all the new comics every Wednesday. From there endpoints where built to fuel
-a front end app I would like to write one day. There are a few issues that a ran into
-while building the scraper.
- 1. The data that is returned looks something like a json object,
-    but it's not valid for many reasons.
- 2. Data inconsistencies
+of all the new comics every Wednesday. From there endpoints were built to fuel
+a front end app I would like to build one day.
 
 # Code Tour
 
