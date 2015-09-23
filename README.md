@@ -2,7 +2,7 @@
 
 # What is Project_Rho?
 
-I comic books. Every Wednesday a new stack
+I love comic books. Every Wednesday a new stack
 of comics hits the physical and digital shelves. On this
 day you check out what new comics are out some might be
 from your pull list(comics you subscribe to monthly) or
