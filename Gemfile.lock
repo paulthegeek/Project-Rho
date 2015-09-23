@@ -243,6 +243,7 @@ DEPENDENCIES
   capistrano (~> 3.2.1)
   capistrano-rails (~> 1.1.1)
   capybara (~> 2.3.0)
+  chronic (~> 0.10.2)
   factory_girl_rails (~> 4.4.1)
   guard-rspec
   haml (~> 4.0.5)
