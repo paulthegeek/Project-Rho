@@ -1,6 +1,6 @@
 class CreatorWorker
   include Sidekiq::Worker
-  
+
   def self.create_creators(parsed_response)
     puts "Creating Creators"
     parsed_response.each do |cr|
