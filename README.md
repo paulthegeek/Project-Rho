@@ -12,7 +12,7 @@ Currently the only way to know what new comics are coming
 is to go to a comic book site and look at a long list
 of books that have come out for that week. The problem I
 wanted to solve was limiting that list to only the books
-you care about.
+you care about. The list can be composed of books you read physically or digitally, regardless of where you buy them from. 
 
 
 # Problem
