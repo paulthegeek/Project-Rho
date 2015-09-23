@@ -5,17 +5,14 @@ class ComicScraperWorker
   include Sidekiq::Worker
 
   def perform
-    wednesday = Chronic.parse('next wednesday').strftime('%m/%d/%y')
-    scrape_release_dates(wednesday)
+    comic_day = Chronic.parse('next wednesday').strftime('%-m/%d/%Y')
+    scrape_release_dates(comic_day)
   end
 
-  def scrape_release_dates(date)
-    puts 'We are starting....'
-    # response = <<-END_OF_STRING
-    #   "[{\tpr_id:\"1333023\",\tpr_ttle:\"Aron Warners Pariah Vol 2 #4\",\tcg_name:\"Comics\",\tchildcat:\"Dark Horse\",\tcg_id:\"61\",\tsu_id:\"16341\",\tmn_name:\"Dark Horse\",\tpr_lprice:\"3.39\",\tpr_price:\"3.99\",\tpr_discount:\"15\",\tpr_qty:\"8\",\tcart:\"0\",\tpr_parentid:\"1333023\",\tpr_simg:\"1\",\tsu_id:\"16341\",\tissubscribe:\"0\",\tartst:\"Brett Weldele\",\twrit:\"Aaron Warner - Phillip Gelatt\",},]"
-    # END_OF_STRING
+  def scrape_release_dates(comic_day)
+    puts 'Let\'s get these comics...'
 
-    uri = "http://www.midtowncomics.com/store/ajax_wr_online.asp?cat=61&wdate=#{date}"
+    uri = "http://www.midtowncomics.com/store/ajax_wr_online.asp?cat=61&wdate=#{comic_day}"
     response = HTTParty.post(uri)
     response = response.parsed_response
     ComicScraperWorker.data_cleanup(response)
@@ -23,9 +20,14 @@ class ComicScraperWorker
 
   def self.data_cleanup(response)
     response.encode!('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+
+    #Grab every key in the data object and put quotes around it
     response = response.gsub(/\s*(\w+):\s*"/, '"\1": "')
+    #Remove the comma before the end of the JSON object
     response = response.gsub(/(,)}/, "}")
+    # Remove the comma before closing bracket of the array
     response = response.gsub(/(,)]/, "]")
+
     response = JSON.parse(response)
     PublisherWorker.create_publishers(response)
   end
