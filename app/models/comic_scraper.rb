@@ -3,15 +3,13 @@ require 'open-uri'
 class ComicScraper
 
   def initialize(today, next_wednesday)
-    @today = '4/23/14'
-    @next_wed = '4/30/14'
+    today = Date.today
+    @wednesday = 1 + ((2-today.wday) % 7).strftime('%m/%d/%y')
   end
 
   def run_scraper
     puts 'Running for Wednesday.....'
-    scrape_release_dates(@today)
-    puts 'Running for Next Wednesday......'
-    scrape_release_dates(@next_wednesday)
+    scrape_release_dates(@wednesday) 
   end
 
   def scrape_release_dates(date)
