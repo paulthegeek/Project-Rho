@@ -4,15 +4,15 @@
 
 I love comic books. Every Wednesday a new stack
 of comics hits the physical and digital shelves. On this
-day you check out what new comics are out some might be
-from your pull list(comics you subscribe to monthly) or
+day you check out what new comics are out. Some might be
+from your pull list (comics you subscribe to monthly) or
 there is something new you would like to try.
 
 Currently the only way to know what new comics are coming
-is to go to a comic book site and look at the long list
+is to go to a comic book site and look at a long list
 of books that have come out for that week. The problem I
 wanted to solve was limiting that list to only the books
-you care about.
+you care about. The list can be composed of books you read physically or digitally, regardless of where you buy them from. 
 
 
 # Problem
@@ -20,17 +20,15 @@ The comics industry is behind the times when it comes to technology. There is no
 easy way to get data to build websites or applications around. The industry also
 tends to enjoy monopolies around this data. To get around the problem I decided
 to build a scraper that would fill a database of all the new comics every Wednesday.
-There are a few issues that a ran into while building the scraper. The data that
-is returned looks something like a json object, but it's not valid for many reasons.
+There are a few issues that I ran into while building the scraper. The data that
+is returned looks something like a json object, but it's not valid. The two main reasons are:
+ 1. The data that is returned has extra commas, brackets, and square brackets in the wrong places
+ 2. Data inconsistencies
 
 # Solution
 To get around the problem I decided to build a scraper that would fill a database
-of all the new comics every Wednesday. From there endpoints where built to fuel
-a front end app I would like to write one day. There are a few issues that a ran into
-while building the scraper.
- 1. The data that is returned looks something like a json object,
-    but it's not valid for many reasons.
- 2. Data inconsistencies
+of all the new comics every Wednesday. From there endpoints were built to fuel
+a front end app I would like to build one day.
 
 # Code Tour
 
