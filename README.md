@@ -60,6 +60,7 @@ There are tests for the models, controllers, and views all using Rspec and Facto
 1. In your terminal window choose a directory you would like the project to live and then run this command```git clone git@github.com:paulthegeek/Project-Rho.git```
 
 ## Bundle install
+Run the ```bundle install``` command
 
 ## Set the Cron job
 1. Navigate to the project in your terminal window
