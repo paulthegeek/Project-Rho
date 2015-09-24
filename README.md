@@ -55,3 +55,18 @@ The models, controllers and views deliver a crud style API that I can attach a f
 
 ## Tests
 There are tests for the models, controllers, and views all using Rspec and Factory Girl
+
+# Running The App
+
+## Clone Git Repo
+1. In your terminal window choose a directory you would like the project to live and then run this command```git clone git@github.com:paulthegeek/Project-Rho.git```
+
+## Bundle install
+
+## Set the Cron job
+1. Navigate to the project in your terminal window
+2. Enter the ```whenever -w``` command into your terminal window and run it. This will set the cron job.
+
+## Run Sidekiq
+1. In your terminal window Enter the ```bundle exec sidekiq``` command and run it.
+2. Watch magic happen
