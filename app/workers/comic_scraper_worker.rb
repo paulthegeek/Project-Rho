@@ -26,7 +26,7 @@ class ComicScraperWorker
     #Remove the comma before the end of the JSON object
     response = response.gsub(/(,)}/, "}")
     # Remove the comma before closing bracket of the array
-    response = response.gsub(/(,)]/, "]")
+    response = response.gsub(/(,)\]/, "]")
 
     response = JSON.parse(response)
     PublisherWorker.create_publishers(response)

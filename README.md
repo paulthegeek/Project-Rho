@@ -12,7 +12,7 @@ Currently the only way to know what new comics are coming
 is to go to a comic book site and look at a long list
 of books that have come out for that week. The problem I
 wanted to solve was limiting that list to only the books
-you care about. The list can be composed of books you read physically or digitally, regardless of where you buy them from. 
+you care about. The list can be composed of books you read physically or digitally, regardless of where you buy them from.
 
 
 # Problem
@@ -63,6 +63,11 @@ There are tests for the models, controllers, and views all using Rspec and Facto
 Run the ```bundle install``` command
 
 ## Set the Cron job
+1. If you are using Rbenv to manage your ruby versions you will need to change the job runner to point to your rbenv shims. The lines below are mine but of course the names for your computer will be different.
+```
+job_type :runner, %Q{export PATH=/Users/X-Wing/.rbenv/shims:/Users/X-Wing/src/.rbenv/bin:/usr/bin:$PATH; eval "$(rbenv init -)"; \
+                         cd :path && bundle exec rails runner -e development ':task' :output }
+```
 1. Navigate to the project in your terminal window
 2. Enter the ```whenever -w``` command into your terminal window and run it. This will set the cron job.
 
