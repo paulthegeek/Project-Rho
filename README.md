@@ -1,4 +1,6 @@
-![Codeship](https://codeship.com/projects/f8299b80-2e38-0132-d30c-4adef3b19db7/status?branch=master)
+![CirlceCIStatus](https://circleci.com/gh/:paulthegeek/:project-rho.svg?style=shield&circle-token=:circle-token
+
+r)
 
 # What is Project_Rho?
 
