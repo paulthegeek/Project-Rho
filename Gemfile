@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
-gem 'capistrano', '~> 3.2.1'
-gem 'capistrano-rails', '~> 1.1.1'
-gem 'capybara', '~> 2.3.0'
-gem 'chronic', '~> 0.10.2'
-gem 'haml', '~> 4.0.5'
-gem 'httparty', '~> 0.13.1'
-gem 'jbuilder', '~> 2.0'
-gem 'launchy', '~> 2.4.2'
+gem 'capistrano', '3.7.1'
+gem 'capistrano-rails', ' 1.2.1'
+gem 'capybara', '2.11.0'
+gem 'chronic', '0.10.2'
+gem 'haml', '4.0.7'
+gem 'httparty', '0.14.0'
+gem 'jbuilder', '2.6.1'
+gem 'launchy', '2.4.3'
 gem 'nokogiri'
-gem 'pg', '~> 0.17.1'
+gem 'pg', '0.19.0'
 gem 'rails', '4.1.0'
 gem 'sidekiq', '~> 3.0.0'
 gem 'sinatra', require: false
@@ -31,17 +31,8 @@ end
 
 group :test do
   gem 'nyan-cat-formatter'
-  gem 'rspec-rails', '~> 3.0.2'
+  gem 'rspec-rails', '3.5.2'
   gem 'shoulda'
   gem 'terminal-notifier-guard'
   gem 'webmock', '~> 1.17.4'
 end
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Capistrano for deployment
-
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
