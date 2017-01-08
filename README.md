@@ -1,4 +1,6 @@
-![CirlceCIStatus](https://circleci.com/gh/paulthegeek/Project-Rho.svg?style=shield&circle-token=:circle-token)
+![CirlceCIStatus](https://circleci.com/gh/:paulthegeek/:project-rho.svg?style=shield&circle-token=:circle-token
+
+r)
 
 # What is Project_Rho?
 
