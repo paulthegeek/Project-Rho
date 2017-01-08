@@ -21,3 +21,6 @@ doc/
 *~
 .project
 .DS_Store
+
+# Ignore Rails files
+Gemfile.lock
